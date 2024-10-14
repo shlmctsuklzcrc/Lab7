@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+int kolo(int x1, int y1, int r1, int x2, int y2, int r2) {
+    double d = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+
+    if (x1 == x2 && y1 == y2 && r1 == r2) {
+        return -1;
+    }
+    if (d == fabs(r1 - r2) || d == r1 + r2) {
+        return 1;
+    }
+    if (d > r1 + r2 || d < fabs(r1 - r2)) {
+        return 0;
+    }
+    return 2;
+}
+
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+    int x1, y1, r1, x2, y2, r2;
+    printf("Введіть координати центрів та радіуси двох кіл\n");
+    printf(" x1 y1 r1\n");
+    scanf("%d %d %d", &x1, &y1, &r1);
+    printf(" x2 y2 r2\n");
+    scanf("%d %d %d", &x2, &y2, &r2);
+
+    int result = kolo(x1, y1, r1, x2, y2, r2);
+    if (result == -1) {
+        printf("Кількість точок перетину: нескінченна (кола співпадають)\n");
+    } else {
+        printf("Кількість точок перетину: %d\n", result);
+    }
+
+    return 0;
+}
